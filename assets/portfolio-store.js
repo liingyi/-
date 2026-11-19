@@ -1,0 +1,2 @@
+/* Read-only public data adapter. No browser draft or authoring API. */
+(()=>{const state={"covers":{},"music":[],"musicConfigured":true};const clone=x=>JSON.parse(JSON.stringify(x));Object.assign(window.PAPER_TEXTURES||(window.PAPER_TEXTURES={}),window.PORTFOLIO_MANAGED_TEXTURES||{});window.PortfolioStore=Object.freeze({ready:Promise.resolve(),getState:()=>clone(state),url:path=>path,onChange:()=>()=>{}})})();

@@ -1,0 +1,7 @@
+/* Photos keep their original size and grid position. Reflection never receives input. */
+.collection-masonry-item:hover,.collection-masonry-item:focus-visible{transform:none}
+.collection-masonry-item.has-paper-tilt{transition:none;transform-origin:center;z-index:2}
+.collection-masonry-item.has-paper-tilt:hover,.collection-masonry-item.has-paper-tilt:focus-visible{z-index:2}
+.collection-masonry-item>picture{position:relative;isolation:isolate}
+.collection-masonry-item>picture::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(ellipse at var(--reflection-x,50%) var(--reflection-y,50%),rgba(255,255,255,.95),rgba(223,238,255,.38) 23%,rgba(255,255,255,.08) 42%,transparent 66%);opacity:var(--reflection-alpha,0)}
+@media(prefers-reduced-motion:reduce){.collection-masonry-item>picture::after{display:none}}

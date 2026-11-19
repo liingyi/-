@@ -1,0 +1,50 @@
+/* Scene composition follows the authored piano prototype; controls use site tokens. */
+#home-view.piano-home{display:flex;flex-direction:column;padding:116px 0 max(14px,env(safe-area-inset-bottom));background:var(--bg);isolation:isolate}
+#home-view.piano-home[hidden]{display:none}
+.piano-intro{margin:0 var(--gut);display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-shrink:0;position:relative;z-index:2;min-height:108px}
+.piano-heading{max-width:620px}
+.piano-heading .eyebrow{margin:0 0 10px;font-size:10px;color:var(--muted);letter-spacing:.12em}
+.piano-heading h1{margin:0;font-family:var(--sans);font-size:clamp(28px,2.5vw,40px);line-height:1.22;font-weight:500;letter-spacing:.06em}
+.piano-heading h1 span{display:inline-block;font-family:var(--serif);font-size:16px;letter-spacing:0;font-weight:400;margin-left:20px}
+.piano-heading p:last-child{margin:10px 0 0;font-size:12px;line-height:1.8;color:var(--muted);text-wrap:pretty}
+.piano-actions{display:flex;align-items:center;gap:6px;flex-shrink:0;padding-top:5px}
+.piano-home .piano-control{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 16px;border-radius:24px;font:inherit;font-size:12px;line-height:1.3;color:var(--ink);background:var(--nav-glass-fill);border:1px solid var(--nav-glass-border);box-shadow:inset 0 1px 0 var(--nav-glass-highlight),0 6px 22px var(--nav-glass-shadow);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);transition:transform 200ms,box-shadow 200ms;cursor:pointer;white-space:nowrap}
+.piano-home .piano-control:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 var(--nav-glass-highlight),0 8px 24px var(--nav-glass-shadow)}
+.piano-home .piano-control:active{transform:scale(.97)}
+.piano-home .piano-control[aria-pressed=true]{box-shadow:inset 0 1px 0 var(--nav-glass-highlight),inset 0 0 0 1px var(--muted),0 5px 16px var(--nav-glass-shadow)}
+.piano-home .piano-control:disabled{opacity:.45;cursor:default}
+.piano-control svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.piano-home .piano-icon{width:42px;padding:0}
+#piano-sound-button[data-sound=true] .sound-off,#piano-sound-button[data-sound=false] .sound-on{display:none}
+#piano-stage{position:relative;flex:1;min-height:300px;isolation:isolate}
+#piano-stage #scroll-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+#piano-stage #scroll-canvas.is-hovering{cursor:pointer}
+#piano-stage #scroll-canvas.is-dragging{cursor:grabbing}
+#piano-loading{position:absolute;inset:40% 20px auto;text-align:center;font-size:12px;color:var(--muted);pointer-events:none}
+.piano-home .piano-rest{position:absolute;right:var(--gut);bottom:15px}
+.piano-shelf{margin:0 var(--gut);padding:16px 0 8px;min-height:82px;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(170px,.9fr) minmax(150px,1.3fr) auto auto;align-items:center;gap:20px;flex-shrink:0;position:relative;z-index:2}
+.piano-shelf .eyebrow{display:block;font-size:9px;letter-spacing:.08em;color:var(--muted);margin-bottom:7px}
+.piano-now{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;min-width:0}
+.piano-now strong{font-weight:500;font-size:20px;line-height:1.3;letter-spacing:.03em}
+.piano-now>span{font-size:10px;color:var(--muted)}
+.piano-shelf-copy{margin:0;line-height:1.8;font-size:11px;color:var(--muted);text-wrap:pretty}
+.piano-paging{display:flex;align-items:center;gap:8px}
+#piano-progress{font-size:12px;min-width:66px;font-variant-numeric:tabular-nums;text-align:center}
+.piano-series-link{grid-column:1/-1;justify-self:start;color:var(--muted);font-size:10px;min-height:28px;display:flex;align-items:center;margin-top:-5px}
+.piano-series-link:hover{color:var(--ink)}
+body:not([data-view=home]) .piano-home{visibility:hidden;pointer-events:none}
+.piano-home .piano-control:focus-visible,.piano-series-link:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+@media(min-width:1700px){.piano-intro{min-height:118px}.piano-shelf{min-height:92px}}
+@media(max-width:1100px){.piano-intro{min-height:110px}.piano-heading h1 span{display:block;margin:7px 0 0;font-size:14px}.piano-heading p:last-child{max-width:410px}.piano-shelf{grid-template-columns:1fr 1fr auto;gap:12px}.piano-shelf-copy{display:none}}
+@media(max-width:760px){#home-view.piano-home{padding-top:142px;padding-bottom:10px}.piano-intro{display:block;min-height:140px;margin:0 20px}.piano-heading{max-width:none}.piano-heading h1{font-size:28px}.piano-heading h1 span{display:inline-block;margin-left:12px;font-size:13px}.piano-heading p:last-child{font-size:11px;max-width:100%;margin-top:8px}.piano-actions{padding-top:12px}.piano-home .piano-control{min-height:38px;padding-inline:14px;font-size:11px}.piano-home .piano-icon{width:38px;padding:0}#piano-stage{min-height:300px}.piano-shelf{margin:0 20px;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding-top:12px;min-height:110px}.piano-shelf>div:first-child{grid-column:1}.piano-now{gap:8px}.piano-now strong{font-size:17px}.piano-now>span{font-size:10px}.piano-paging{grid-column:2;grid-row:1;gap:2px}#piano-open-button{grid-column:1;justify-self:start;min-height:36px}.piano-series-link{grid-column:2;grid-row:2;justify-self:end;margin-top:0;min-height:36px}.piano-rest{right:20px;bottom:4px}.piano-shelf .eyebrow{font-size:8px}.piano-shelf .piano-icon{width:32px}#piano-progress{min-width:56px;font-size:11px}}
+@media(max-height:740px) and (min-width:761px){#home-view.piano-home{padding-top:100px}.piano-intro{min-height:85px}.piano-heading p:last-child{margin-top:6px}.piano-shelf{padding-top:10px;min-height:70px}#piano-stage{min-height:250px}}
+@media(max-height:760px) and (max-width:760px){#home-view.piano-home{padding-top:136px}.piano-intro{min-height:128px}.piano-heading h1{font-size:25px}#piano-stage{min-height:240px}.piano-shelf{min-height:100px;padding-top:8px;gap:6px}}
+@media(prefers-reduced-motion:reduce){.piano-home .piano-control{transition:none}}
+/* Keep the existing floating owner entry clear of the home collection link. */
+@media(max-width:760px){.piano-home .piano-series-link{margin-right:76px}.piano-home .piano-rest{right:20px;bottom:4px}}
+/* The archive uses the site's viewer, whose own close/zoom/paging are sufficient. */
+body[data-view=home]:has(#photo-viewer[open]) #top-navigation{visibility:hidden;pointer-events:none}
+/* Local CD inspection actions share the existing shelf's tokens and footprint. */
+.piano-case-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.piano-case-actions [hidden]{display:none!important}
+@media(max-width:760px){.piano-case-actions{grid-column:1;grid-row:2;gap:4px}.piano-case-actions .piano-control{min-height:36px;padding-inline:10px}}

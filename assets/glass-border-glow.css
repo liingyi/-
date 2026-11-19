@@ -1,0 +1,19 @@
+/* React Bits BorderGlow masks and layered edge-light, adapted to an independent overlay.
+   Official source: https://reactbits.dev/r/BorderGlow-JS-CSS.json */
+#glass-border-glow-layer[popover]{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:transparent;overflow:visible;pointer-events:none!important;contain:layout style;z-index:1000}
+#glass-border-glow-layer::backdrop{display:none;pointer-events:none}
+#glass-border-glow-layer *{pointer-events:none!important}
+.glass-border-glow{position:fixed;left:0;top:0;border-radius:var(--glow-corners,47px);opacity:0;transition:opacity .75s ease-in-out;isolation:isolate;pointer-events:none;--glow-angle:0deg;--glow-edge:0;--glow-color-edge:0;--glow-power:1;--glow-padding:73px;--cone-spread:38;--glow-mesh:radial-gradient(at 80% 55%,#c084fc 0px,transparent 50%),radial-gradient(at 69% 34%,#f472b6 0px,transparent 50%),radial-gradient(at 8% 6%,#38bdf8 0px,transparent 50%),radial-gradient(at 41% 38%,#c084fc 0px,transparent 50%),radial-gradient(at 86% 85%,#f472b6 0px,transparent 50%),radial-gradient(at 82% 18%,#38bdf8 0px,transparent 50%),radial-gradient(at 51% 4%,#f472b6 0px,transparent 50%),linear-gradient(#c084fc 0 100%)}
+.glass-border-glow[data-lit]{opacity:1;transition:opacity .25s ease-out}
+/* Broad, softly feathered color rather than a rotating multicolor stripe. */
+.glass-border-glow-color{position:absolute;inset:0;border-radius:inherit;opacity:calc(var(--glow-color-edge)*var(--glow-power)*.72);mask-image:conic-gradient(from var(--glow-angle) at center,#000 calc(var(--cone-spread)*1%),transparent calc((var(--cone-spread) + 15)*1%),transparent calc((100 - var(--cone-spread) - 15)*1%),#000 calc((100 - var(--cone-spread))*1%))}
+.glass-border-glow-ring{position:absolute;inset:0;border-radius:inherit;padding:1px;background:var(--glow-mesh);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor}
+/* The mask covers the OUTER 73px padding too; bloom can illuminate the page. */
+.glass-border-glow-light{position:absolute;inset:calc(var(--glow-padding)*-1);border-radius:inherit;opacity:calc(var(--glow-edge)*var(--glow-power));mask-image:conic-gradient(from var(--glow-angle) at center,#000 2.5%,transparent 10%,transparent 90%,#000 97.5%);mix-blend-mode:plus-lighter}
+.glass-border-glow-light::before{content:"";position:absolute;inset:var(--glow-padding);border-radius:inherit;box-shadow:inset 0 0 0 1px hsl(40deg 80% 80% / 85%),inset 0 0 1px hsl(40deg 80% 80% / 60%),inset 0 0 3px hsl(40deg 80% 80% / 50%),inset 0 0 6px hsl(40deg 80% 80% / 40%),inset 0 0 15px hsl(40deg 80% 80% / 30%),inset 0 0 25px 2px hsl(40deg 80% 80% / 20%),inset 0 0 50px 2px hsl(40deg 80% 80% / 10%),0 0 1px hsl(40deg 80% 80% / 60%),0 0 3px hsl(40deg 80% 80% / 50%),0 0 6px hsl(40deg 80% 80% / 40%),0 0 15px hsl(40deg 80% 80% / 30%),0 0 25px 2px hsl(40deg 80% 80% / 20%),0 0 50px 2px hsl(40deg 80% 80% / 10%)}
+html[data-theme=dark] .glass-border-glow{--glow-power:1}
+html:not([data-theme=dark]) .glass-border-glow{--glow-power:.65}
+html:not([data-theme=dark]) .glass-border-glow-light{mix-blend-mode:normal}
+body[data-collection-turn] #glass-border-glow-layer{visibility:hidden}
+@media(prefers-reduced-motion:reduce){.glass-border-glow,.glass-border-glow[data-lit]{transition:none}}
+@media(hover:none){#glass-border-glow-layer{display:none!important}}

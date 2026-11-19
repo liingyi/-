@@ -1,0 +1,51 @@
+/* One continuous photographic space; typography stays outside the moving paper field. */
+body:not([data-view="/"]):not([data-view=home]) #home-info,
+body:not([data-view="/"]):not([data-view=home]) .home-bottom{display:none}
+.page-content{pointer-events:none;z-index:2;background:transparent}
+.page-content .wrap{pointer-events:none}
+.page-content a,.page-content button,.page-content input,.scene-copy,.journey-heading,.formation-list,.page-content .page-kicker{pointer-events:auto}
+.page-content .page-kicker{margin-top:5px}
+.journey-index,.journey-detail,.author-page,.archive-about{position:relative;min-height:calc(100svh - var(--header));padding-bottom:90px}
+.journey-heading{width:42%;padding-top:28px;margin-bottom:30px}
+.journey-heading h1{font-family:var(--sans);font-size:clamp(28px,3vw,44px);font-weight:400;letter-spacing:-.055em;margin:0 0 16px;line-height:1.1}
+.journey-heading p{font-size:12px;line-height:1.8;color:var(--muted);max-width:300px;margin:0}
+.formation-list{display:flex;flex-direction:column;width:44%;max-width:600px}
+.formation-row{display:flex;align-items:baseline;gap:20px;min-height:101px;padding-block:12px;color:var(--muted);transition:color .35s,translate .5s var(--ease);position:relative}
+.formation-row small{font-size:10px;font-weight:400;align-self:flex-start;margin-top:14px;letter-spacing:.06em}
+.formation-row>span{font-size:clamp(35px,4.1vw,68px);line-height:1.08;letter-spacing:-.06em;white-space:nowrap;font-weight:400}
+.formation-row em{display:block;font-family:var(--sans);font-size:10px;font-style:normal;letter-spacing:.07em;color:var(--muted);margin-top:8px}
+.formation-row b{font-size:30px;line-height:1;font-weight:300;opacity:0;transition:opacity .3s,translate .4s;translate:-8px 6px;margin-left:auto;align-self:center}
+.formation-row.is-selected,.formation-row:hover,.formation-row:focus-visible{color:var(--ink)}
+.formation-row.is-selected b,.formation-row:hover b,.formation-row:focus-visible b{opacity:1;translate:0 0}
+.scene-copy{width:42%;max-width:550px;padding-top:clamp(24px,5vh,72px)}
+.scene-copy .eyebrow{margin:0 0 26px;color:var(--muted)}
+.journey-title{font-family:var(--sans);font-weight:400;font-size:clamp(70px,7.7vw,130px);line-height:.96;letter-spacing:-.075em;margin:0;overflow-wrap:normal}
+.journey-title em{font-family:var(--serif);font-weight:400;letter-spacing:-.07em}
+.journey-subtitle{font-size:20px;letter-spacing:.04em;line-height:1.4;margin:24px 0 28px}
+.scene-copy .series-lead{font-size:13px;line-height:1.95;max-width:330px;margin:0 0 24px}
+.scene-copy .series-spec{margin-bottom:26px}
+.glass-action{display:inline-flex;align-items:center;justify-content:space-between;gap:44px;min-height:52px;border:1px solid var(--line);border-radius:28px;padding:0 22px;font-size:12px;line-height:1.5;background:color-mix(in srgb,var(--bg) 50%,transparent);backdrop-filter:blur(20px) saturate(1.4);box-shadow:inset 0 1px 0 #ffffff75,0 5px 18px #00000006;transition:translate .3s,background .3s}
+.glass-action:hover{translate:0 -2px;background:color-mix(in srgb,var(--bg) 80%,transparent)}
+.scene-caption{position:absolute;bottom:48px;left:50%;right:0;display:flex;justify-content:space-between;gap:28px;font-size:10px;line-height:1.5;color:var(--muted);pointer-events:none;letter-spacing:.03em}
+.journey-next{position:absolute;bottom:45px;left:0;display:flex;flex-direction:column;gap:9px}
+.journey-next>span{font-size:10px;color:var(--muted)}
+.journey-next strong{font-size:16px;font-weight:400}
+.author-page .journey-title{font-size:clamp(70px,7vw,116px);line-height:1.1}
+.archive-about .about-facts{margin-bottom:24px}
+.gallery-page{position:relative;padding-bottom:30px}
+.gallery-page .journey-title{font-size:clamp(55px,6.8vw,110px);padding-top:30px}
+.gallery-intro{font-size:13px;color:var(--muted);margin:26px 0 48px}
+.gallery-page .masonry{pointer-events:auto;position:relative;padding:24px;border-radius:22px;background:color-mix(in srgb,var(--bg) 65%,transparent);backdrop-filter:blur(26px)}
+.gallery-page .work-tile{border-radius:3px}
+body[data-view$="/gallery"] .page-content{pointer-events:auto}
+body[data-view$="/gallery"] .paper-viewport{opacity:1}
+.directory{inset:20px;width:calc(100% - 40px);height:calc(100dvh - 40px);max-width:none;border:1px solid var(--line);border-radius:32px;background:color-mix(in srgb,var(--bg) 64%,transparent);backdrop-filter:blur(42px) saturate(1.35);box-shadow:inset 0 1px 1px #ffffff90,0 18px 80px #0002}
+.directory::backdrop{background:rgba(0,0,0,.65);backdrop-filter:none;-webkit-backdrop-filter:none;opacity:1}
+.directory-body{min-height:calc(100dvh - 210px);padding:18px 0;gap:9vw}
+.directory-link{font-family:var(--sans);font-size:clamp(30px,4.2vw,64px);padding:12px 0;min-height:78px;letter-spacing:-.055em;text-align:left;width:100%}
+.directory-picture img{border-radius:8px;width:100%;height:auto;aspect-ratio:1;object-fit:cover}
+.directory-link span{font-weight:400}
+#motion-toggle{font-size:10px;padding-inline:10px;white-space:nowrap}
+.header-nav{gap:22px}
+@media(max-width:1100px){.formation-row{min-height:90px}.formation-row>span{font-size:44px}.journey-title{font-size:80px}.header-nav{gap:16px}.header-nav .desktop-link{display:none}}
+@media(max-width:700px){.scene-copy,.journey-heading{width:88%;max-width:420px}.formation-list{width:90%;padding-bottom:42vh}.formation-row{min-height:82px}.formation-row>span{font-size:38px}.scene-copy{padding-top:30px}.journey-title{font-size:64px}.scene-caption{display:none}.journey-detail,.author-page,.archive-about{padding-bottom:42vh}.journey-next{bottom:28px}.gallery-page .masonry{padding:10px}.directory{inset:10px;width:calc(100% - 20px);height:calc(100dvh - 20px)}.directory-link{font-size:38px}.header-nav{gap:12px}#motion-toggle{display:none}}
